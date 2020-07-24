@@ -35,12 +35,14 @@ export const Tasks = () => {
       <h2 data-testid="project-name">{projectName}</h2>
 
       <ul className="tasks__list">
-        {tasks.map((task) => (
-          <li key={`${task.id}`}>
-            <Checkbox id={task.id} taskDesc={task.task} />
-            <span>{task.task}</span>
-          </li>
-        ))}
+        {tasks
+          .sort((a, b) => (a.createdAt > b.createdAt ? 1 : -1))
+          .map((task) => (
+            <li key={`${task.id}`}>
+              <Checkbox id={task.id} taskDesc={task.task} />
+              <span>{task.task}</span>
+            </li>
+          ))}
       </ul>
 
       <AddTask />
